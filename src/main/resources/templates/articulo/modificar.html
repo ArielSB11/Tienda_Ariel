@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>TechShop</title>
+        <meta charset="UTF-8">
+      <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"/>
+        <dv class="contenido">
+        <h2>Informacion del articulos</h2>
+        <a th:href="@{/articulo/listado}">Regresar</a>
+        <hr/>
+        <form th:action="@{/articulo/guardar}"
+              method="post"
+              th:object="${articulo}">
+            
+            <fieldset><input type="hidden" name="idArticulo" th:field="*{idArticulo}"/>
+            \
+            <fieldset>
+                <label for="nombre">Descripcion</label>
+                <input type="text" name="nombre" th:field="*{descripcion}"/>
+            </fieldset>    
+            <fieldset>
+                <label for="detalle">Detalle</label>
+                <input name="detalle" th:field="*{detalle}" rows="6" cols="50"/>
+            </fieldset>
+            <fieldset>
+                <label for="precio">Precio</label>
+                <input type="number" name="precio" th:field="*{precio}"/>
+            </fieldset>    
+            <fieldset>
+                <label for="existencias">Existencias</label>
+                <input type="number" name="existencias" th:field="*{existencias}"/>
+            </fieldset>
+             <fieldset>
+                <label for="activo">Activo</label>
+                <input type="checkbox" name="activo" th:field="*{activo}"/>
+            </fieldset>  
+            <hr/>
+            <input type="submit" value="Guardar" name="guardar"/>
+        </form>
+        <div th:if="${articulos !=null and !articulos.empty}">
+        <table border="1">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+           </tr>
+           
+           <tr th:each="articulo : ${articulos}">
+               <td>[[${articulo.nombre}]]</td>
+               <td>[[${articulo.apellidos}]]</td>
+               <td>[[${articulo.correo}]]</td>
+               <td>[[${articulo.telefono}]]</td>
+           </tr>
+        </table>
+    </div>
+        
+     <div th:if="${articulos ==null or articulos.empty}">
+         
+     <h2>No hay articulos que mostrar</h2>
+        </div>
+     </div>
+     <footer th:replace="layout/plantilla :: footer"/>
+
+    </body>
+</html>

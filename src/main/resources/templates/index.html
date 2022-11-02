@@ -8,30 +8,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <head>
         <title>TechShop</title>
         <meta charset="UTF-8">
-      
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"/>
-        <h2>Informacion del clientes</h2>
-        <a th:href="@{/cliente/nuevo}">Nuevo cliente</a>
-        <div th:if="${clientes !=null and !clientes.empty}">
+        <div class="contenido">
+        <h2>Nuestros articulos</h2>
+        <div th:if="${articulos !=null and !articulos.empty}">
         <table border="1">
             <tr>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Correo</th>
-                <th>Telefono</th>
-                <th>Eliminar</th>
-                <th>Modificar</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
            </tr>
            
-           <tr th:each="cliente : ${clientes}">
-               <td>[[${cliente.nombre}]]</td>
-               <td>[[${cliente.apellidos}]]</td>
-               <td>[[${cliente.correo}]]</td>
-               <td>[[${cliente.telefono}]]</td>
-               <td><a th:href="@{/cliente/modificar/}+${cliente.idCliente}">Modificar</td>
-               <td><a th:href="@{/cliente/eliminar/}+${cliente.idCliente}">Eliminar</td>
+           <tr th:each="articulos : ${articulos}">
+               <td>[[${articulo.descripcion}]]</td>
+               <td>style="text-align: right">[[${#numbers.formatDecimal(articulo.precio,3,2)}]]</td>
+               <td><a th:href="@{/carrito/agregar/} + ${articulo.idArticulo}">Agregar</td>
                
            </tr>
         </table>
@@ -39,7 +32,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         
      <div th:if="${clientes ==null or clientes.empty}">
          
-     <h2>No hay clientes que mostrar</h2>
+     <h2>No hay articulos que mostrar</h2>
      
      </div>
         <footer th:replace="layout/plantilla :: footer"/>

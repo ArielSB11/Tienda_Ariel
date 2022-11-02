@@ -8,18 +8,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <head>
         <title>TechShop</title>
         <meta charset="UTF-8">
-      
+      <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <header th:replace="layout/plantilla :: header"/>
+        <dv class="contenido">
         <h2>Informacion del clientes</h2>
-        <a th:href="@{/}">Regresar</a>
+        <a th:href="@{/cliente/listado}">Regresar</a>
         <hr/>
         <form th:action="@{/cliente/guardar}"
               method="post"
               th:object="${cliente}">
             
             <fieldset><input type="hidden" name="idCliente" th:field="*{idCliente}"/>
+                
+            <fieldset><input type="hidden" name="idCredito" th:field="*{idCredito}"/>
+                
             <fieldset>
                 <label for="nombre">Nombre</label>
                 <input type="text" name="nombre" th:field="*{nombre}"/>
@@ -35,7 +39,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <fieldset>
                 <label for="telefono">Telefono</label>
                 <input type="tel" name="telefono" th:field="*{telefono}"/>
-            </fieldset>   
+            </fieldset>
+             <fieldset>
+                <label for="limite">Limite de credito</label>
+                <input type="number" name="limite" th:field="*{credito.limite}"/>
+            </fieldset>  
             <hr/>
             <input type="submit" value="Guardar" name="guardar"/>
         </form>
@@ -60,7 +68,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
      <div th:if="${clientes ==null or clientes.empty}">
          
      <h2>No hay clientes que mostrar</h2>
-     
+        </div>
      </div>
      <footer th:replace="layout/plantilla :: footer"/>
 
