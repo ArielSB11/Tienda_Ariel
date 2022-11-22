@@ -24,13 +24,24 @@ public class ClienteController {
         
         var clientes=clienteService.getClientes();
         
+        
+        
         model.addAttribute("clientes",clientes);
         return "/cliente/listado";
     }
     
+    @GetMapping("/cliente/busqueda")
+    public String buscarPorApellido(Model model) {
+        var cliente=clienteService.buscarPorApellido("Contreras Mora");
+        model.addAttribute("clientes",cliente);
+        return "/cliente/modificar";
+    }
+    
+    
+    
     @GetMapping("/cliente/nuevo")
     public String clienteNuevo(Cliente cliente) {
-        return "/cliente/modifica";
+        return "/cliente/modificar";
     }
     
     @PostMapping("/cliente/guardar")

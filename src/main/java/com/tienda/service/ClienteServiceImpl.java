@@ -24,7 +24,7 @@ public class ClienteServiceImpl implements ClienteService{
     private ClienteDao clienteDao;
     @Autowired
     private CreditoDao creditoDao;
-
+    
     @Override
     @Transactional(readOnly = true)
     public List<Cliente> getClientes() {
@@ -53,6 +53,12 @@ public class ClienteServiceImpl implements ClienteService{
         cliente.setCredito(credito);
         
         clienteDao.delete(cliente);
+    }
+
+    @Override
+    @Transactional (readOnly = true)
+    public List<Cliente> buscarPorApellido(String apellidos) {
+        return (List<Cliente>)clienteDao.findByApellidos(apellidos); 
     }
     
 }

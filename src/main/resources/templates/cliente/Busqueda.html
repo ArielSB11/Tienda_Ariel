@@ -13,39 +13,39 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <header th:replace="layout/plantilla :: header"/>
         <dv class="contenido">
-        <h2>[[#{cliente.datos}]]</h2>
-        <a th:href="@{/cliente/listado}">[[#{accion.regresar}]]</a>
+        <h2>Informacion del clientes</h2>
+        <a th:href="@{/cliente/listado}">Regresar</a>
         <hr/>
         <form th:action="@{/cliente/guardar}"
               method="post"
               th:object="${cliente}">
             
-            <input type="hidden" name="idCliente" th:field="*{idCliente}"/>
+            <fieldset><input type="hidden" name="idCliente" th:field="*{idCliente}"/>
                 
-            <input type="hidden" name="idCredito" th:field="*{credito.idCredito}"/>
+            <fieldset><input type="hidden" name="idCredito" th:field="*{idCredito}"/>
                 
             <fieldset>
-                <label for="nombre">[[#{cliente.nombre}]]</label>
+                <label for="nombre">Nombre</label>
                 <input type="text" name="nombre" th:field="*{nombre}"/>
             </fieldset>    
             <fieldset>
-                <label for="apellidos">[[#{cliente.apellido}]]</label>
+                <label for="apellidos">Apellido</label>
                 <input type="text" name="apellidos" th:field="*{apellidos}"/>
             </fieldset>
             <fieldset>
-                <label for="correo">[[#{cliente.correo}]]</label>
+                <label for="correo">Correo</label>
                 <input type="email" name="correo" th:field="*{correo}"/>
             </fieldset>    
             <fieldset>
-                <label for="telefono">[[#{cliente.telefono}]]</label>
+                <label for="telefono">Telefono</label>
                 <input type="tel" name="telefono" th:field="*{telefono}"/>
             </fieldset>
              <fieldset>
-                <label for="limite">[[#{cliente.limite}]]</label>
+                <label for="limite">Limite de credito</label>
                 <input type="number" name="limite" th:field="*{credito.limite}"/>
             </fieldset>  
             <hr/>
-            <button type="submit" th:text="#{accion.guardar}"/>
+            <input type="submit" value="Guardar" name="guardar"/>
         </form>
         <div th:if="${clientes !=null and !clientes.empty}">
         <table border="1">
@@ -70,7 +70,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
      <h2>No hay clientes que mostrar</h2>
         </div>
      </div>
-             <footer th:replace="layout/plantilla :: footer"/>
+     <footer th:replace="layout/plantilla :: footer"/>
 
     </body>
 </html>

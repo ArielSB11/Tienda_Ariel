@@ -30,7 +30,7 @@ public class CategoriaController {
     
     @GetMapping("/categoria/nuevo")
     public String categoriaNuevo(Categoria categoria) {
-        return "/categoria/modifica";
+        return "/categoria/modificar";
     }
     
     @PostMapping("/categoria/guardar")

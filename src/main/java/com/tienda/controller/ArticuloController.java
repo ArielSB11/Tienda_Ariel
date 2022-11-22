@@ -30,7 +30,7 @@ public class ArticuloController {
     
     @GetMapping("/articulo/nuevo")
     public String articuloNuevo(Articulo articulo) {
-        return "/articulo/modifica";
+        return "/articulo/modificar";
     }
     
     @PostMapping("/articulo/guardar")
