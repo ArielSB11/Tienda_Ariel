@@ -5,13 +5,18 @@
 package com.tienda.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
+import javax.validation.constraints.NotEmpty;
 
 /**
  *
@@ -19,25 +24,22 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name="credito")
-public class Credito implements Serializable{
+@Table(name="usuario")
+public class Usuario implements Serializable{
     
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name="id_credito")
-    private Long idCredito;
+    @Column (name="id_usuario")
+    private Long idUsuario;
+    @NotEmpty
+    String username;
     
-    public Integer limite;
-
-    public Credito() {
-    }
+    @NotEmpty
+    String password;
     
-    
-
-    public Credito(Integer limite) {
-        this.limite = limite;
-    }
-    
+    @OneToMany
+    @JoinColumn(name="id_usuario")
+    private List<Rol> roles;
     
 }

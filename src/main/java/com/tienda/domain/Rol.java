@@ -10,8 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
+import javax.validation.constraints.NotEmpty;
 
 /**
  *
@@ -19,25 +22,16 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name="credito")
-public class Credito implements Serializable{
+@Table(name="rol")
+public class Rol implements Serializable{
     
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name="id_credito")
-    private Long idCredito;
-    
-    public Integer limite;
-
-    public Credito() {
-    }
-    
-    
-
-    public Credito(Integer limite) {
-        this.limite = limite;
-    }
+    @Column (name="id_rol")
+    private Long idRol;
+    @NotEmpty
+    String nombre;
     
     
 }
